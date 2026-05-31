@@ -1,38 +1,56 @@
-const CACHE_NAME = "visitor-management-v1";
+const CACHE_NAME = "donation-portal-v1";
 
-const urlsToCache = [
-  "./",
-  "./index.html",
-  "./style.css",
-  "./script.js"
+const FILES_TO_CACHE = [
+    "./",
+    "./index.html",
+    "./style.css",
+    "./script.js"
 ];
 
-// Install Service Worker
-self.addEventListener("install", event => {
+self.addEventListener("install", (event) => {
 
-  event.waitUntil(
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+        .then(cache => {
+            return cache.addAll(FILES_TO_CACHE);
+        })
+    );
 
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(urlsToCache);
-      })
-
-  );
-
+    self.skipWaiting();
 });
 
-// Fetch Cached Files
-self.addEventListener("fetch", event => {
+self.addEventListener("activate", (event) => {
 
-  event.respondWith(
+    event.waitUntil(
+        caches.keys().then(keys => {
 
-    caches.match(event.request)
-      .then(response => {
+            return Promise.all(
+                keys.map(key => {
 
-        return response || fetch(event.request);
+                    if(key !== CACHE_NAME){
+                        return caches.delete(key);
+                    }
 
-      })
+                })
+            );
 
-  );
+        })
+    );
+
+    self.clients.claim();
+});
+
+self.addEventListener("fetch", (event) => {
+
+    event.respondWith(
+
+        caches.match(event.request)
+        .then(response => {
+
+            return response || fetch(event.request);
+
+        })
+
+    );
 
 });
