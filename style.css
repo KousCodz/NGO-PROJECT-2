@@ -10,13 +10,18 @@ body{
     padding:20px;
     background:linear-gradient(135deg,#081028,#1a237e,#312e81);
     color:white;
+
+    display:flex;
+    justify-content:center;
 }
 
 .container{
+    width:100%;
     max-width:1200px;
     margin:auto;
     background:rgba(255,255,255,0.08);
     backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
     border:1px solid rgba(255,255,255,0.1);
     border-radius:30px;
     padding:30px;
@@ -38,6 +43,7 @@ h1{
     color:#d1d5db;
     margin-bottom:30px;
     font-size:15px;
+    letter-spacing:0.5px;
 }
 
 .stats{
@@ -53,6 +59,12 @@ h1{
     padding:25px;
     text-align:center;
     backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-4px);
 }
 
 .card h3{
@@ -76,7 +88,7 @@ h1{
 
 input{
     background:rgba(255,255,255,0.1);
-    border:none;
+    border:1px solid rgba(255,255,255,0.08);
     outline:none;
     padding:15px;
     border-radius:14px;
@@ -90,6 +102,7 @@ input::placeholder{
 
 input:focus{
     border:1px solid #60a5fa;
+    box-shadow:0 0 15px rgba(96,165,250,0.3);
 }
 
 button{
@@ -106,6 +119,7 @@ button{
 
 button:hover{
     transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(59,130,246,0.3);
 }
 
 .action-buttons{
@@ -126,6 +140,7 @@ button:hover{
 .table-section h2{
     margin-bottom:15px;
     color:white;
+    font-size:24px;
 }
 
 table{
@@ -145,6 +160,7 @@ th{
     text-align:center;
     color:white;
     font-size:14px;
+    font-weight:600;
 }
 
 td{
@@ -154,6 +170,10 @@ td{
     border-top:1px solid rgba(255,255,255,0.08);
 }
 
+tbody tr{
+    transition:0.2s;
+}
+
 tbody tr:hover{
     background:rgba(255,255,255,0.05);
 }
@@ -161,6 +181,7 @@ tbody tr:hover{
 .summary-table thead{
     background:linear-gradient(90deg,#10b981,#059669);
 }
+
 .delete-btn{
     background:#ef4444;
     color:white;
@@ -168,16 +189,34 @@ tbody tr:hover{
     padding:8px 12px;
     border-radius:8px;
     cursor:pointer;
+    font-size:13px;
 }
 
 .delete-btn:hover{
     background:#dc2626;
+    box-shadow:none;
+    transform:none;
+}
+
+::-webkit-scrollbar{
+    width:8px;
+    height:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#4f46e5;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:transparent;
 }
 
 @media(max-width:768px){
 
     body{
         padding:12px;
+        display:block;
     }
 
     .container{
@@ -199,9 +238,14 @@ tbody tr:hover{
     table{
         display:block;
         overflow-x:auto;
+        white-space:nowrap;
     }
 
     .action-buttons{
         flex-direction:column;
     }
-}
+
+    .table-section h2{
+        font-size:20px;
+    }
+        }
