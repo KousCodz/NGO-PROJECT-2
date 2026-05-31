@@ -93,7 +93,7 @@ input{
     padding:15px;
     border-radius:14px;
     color:white;
-    font-size:16px;
+    font-size:17px;
 }
 
 input::placeholder{
@@ -110,7 +110,7 @@ button{
     cursor:pointer;
     padding:15px;
     border-radius:15px;
-    font-size:16px;
+    font-size:17px;
     font-weight:600;
     color:white;
     background:linear-gradient(90deg,#8b5cf6,#3b82f6);
