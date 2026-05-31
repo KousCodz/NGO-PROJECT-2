@@ -42,7 +42,7 @@ h1{
     text-align:center;
     color:#d1d5db;
     margin-bottom:30px;
-    font-size:15px;
+    font-size:16px;
     letter-spacing:0.5px;
 }
 
@@ -93,7 +93,7 @@ input{
     padding:15px;
     border-radius:14px;
     color:white;
-    font-size:15px;
+    font-size:16px;
 }
 
 input::placeholder{
@@ -110,7 +110,7 @@ button{
     cursor:pointer;
     padding:15px;
     border-radius:15px;
-    font-size:15px;
+    font-size:16px;
     font-weight:600;
     color:white;
     background:linear-gradient(90deg,#8b5cf6,#3b82f6);
@@ -159,7 +159,7 @@ th{
     padding:16px;
     text-align:center;
     color:white;
-    font-size:14px;
+    font-size:16px;
     font-weight:600;
 }
 
@@ -189,7 +189,7 @@ tbody tr:hover{
     padding:8px 12px;
     border-radius:8px;
     cursor:pointer;
-    font-size:13px;
+    font-size:16px;
 }
 
 .delete-btn:hover{
