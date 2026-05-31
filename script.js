@@ -32,6 +32,21 @@ function addDonation(){
     displayDonations();
 }
 
+function deleteDonation(index){
+
+    if(confirm("Delete this donation?")){
+
+        donations.splice(index, 1);
+
+        localStorage.setItem(
+            "donations",
+            JSON.stringify(donations)
+        );
+
+        displayDonations();
+    }
+}
+
 function displayDonations(){
 
     const table = document.getElementById("donationTable");
@@ -39,16 +54,20 @@ function displayDonations(){
     table.innerHTML = "";
 
     donations.forEach((donation,index)=>{
-
-        table.innerHTML += `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${donation.item}</td>
-            <td>${donation.quantity}</td>
-            <td>${donation.donor}</td>
-            <td>${donation.date}</td>
-        </tr>
-        `;
+table.innerHTML += `
+<tr>
+    <td>${index + 1}</td>
+    <td>${donation.item}</td>
+    <td>${donation.quantity}</td>
+    <td>${donation.donor}</td>
+    <td>${donation.date}</td>
+    <td>
+        <button onclick="deleteDonation(${index})" class="delete-btn">
+            Delete
+        </button>
+    </td>
+</tr>
+`;
     });
 
     updateStats();
@@ -129,13 +148,30 @@ function displaySummary(){
 
 function printDonations(){
 
+    let printRows = "";
+
+    donations.forEach((donation,index)=>{
+
+        printRows += `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${donation.item}</td>
+            <td>${donation.quantity}</td>
+            <td>${donation.donor}</td>
+            <td>${donation.date}</td>
+        </tr>
+        `;
+    });
+
     const win = window.open("");
 
     win.document.write(`
     <html>
     <head>
         <title>Donation Records</title>
+
         <style>
+
             body{
                 font-family:Arial;
                 padding:20px;
@@ -152,22 +188,26 @@ function printDonations(){
                 text-align:center;
             }
 
-            h2{
+            h2,h3{
                 text-align:center;
             }
+
         </style>
+
     </head>
+
     <body>
 
     <h2>
-    Manavta Hitay Seva Chatra Old Age Home
+        Manavta Hitay Seva Chatra Old Age Home
     </h2>
 
-    <h3 style="text-align:center;">
-    Donation Records
+    <h3>
+        Donation Records
     </h3>
 
     <table>
+
         <thead>
             <tr>
                 <th>Sr No</th>
@@ -179,8 +219,9 @@ function printDonations(){
         </thead>
 
         <tbody>
-            ${document.getElementById("donationTable").innerHTML}
+            ${printRows}
         </tbody>
+
     </table>
 
     </body>
